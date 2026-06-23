@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج استكمال المتطلبات - مشروع ارتقاء | IRTIQA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1B5E20;
+            --primary-light: #2E7D32;
+            --primary-lighter: #4CAF50;
+            --accent: #FFC107;
+            --accent-dark: #FFA000;
+            --bg: #f8faf8;
+            --card-bg: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --text-muted: #999;
+            --border: #e0e8e0;
+            --shadow: 0 4px 20px rgba(27, 94, 32, 0.08);
+            --shadow-hover: 0 8px 30px rgba(27, 94, 32, 0.15);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 300px; height: 300px;
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -5%;
+            width: 200px; height: 200px;
+            background: rgba(255, 193, 7, 0.08);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 24px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .logo-badge i { font-size: 20px; color: var(--accent); }
+        .logo-badge span { font-weight: 700; font-size: 18px; letter-spacing: 1px; }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .header .subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 16px; }
+        .header .tagline { font-size: 0.95rem; opacity: 0.7; font-style: italic; }
+
+        .progress-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 16px 20px;
+        }
+        .progress-wrapper { max-width: 800px; margin: 0 auto; }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .progress-info span { color: var(--text-light); }
+        .progress-info .percent { color: var(--primary); font-weight: 700; font-size: 16px; }
+        .progress-bar {
+            height: 8px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-lighter) 100%);
+            border-radius: 10px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .purpose-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            border: 2px solid var(--primary-lighter);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .purpose-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 6px; height: 100%;
+            background: var(--primary);
+        }
+        .purpose-card h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .purpose-card h2 i { color: var(--accent-dark); }
+        .purpose-card p { color: var(--text-light); font-size: 15px; line-height: 1.9; }
+        .purpose-card .highlight {
+            color: var(--primary);
+            font-weight: 700;
+            text-align: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--primary-lighter);
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .section:hover { box-shadow: var(--shadow-hover); }
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .section-header:hover {
+            background: linear-gradient(135deg, #145a18 0%, #256d28 100%);
+        }
+        .section-header .section-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 14px;
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+        .section-header .section-title { font-size: 1.15rem; font-weight: 700; flex: 1; }
+        .section-header .section-desc { font-size: 13px; opacity: 0.85; margin-top: 4px; font-weight: 400; }
+        .section-header .toggle-icon {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+            color: var(--accent);
+        }
+        .section.collapsed .toggle-icon { transform: rotate(-90deg); }
+        .section-body {
+            padding: 0;
+            max-height: 3000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+        }
+        .section.collapsed .section-body { max-height: 0; }
+        .section-body-inner { padding: 24px; }
+
+        .question-card {
+            background: #fafafa;
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-bottom: 16px;
+            border-right: 4px solid var(--primary-lighter);
+            transition: all 0.3s ease;
+        }
+        .question-card:hover { background: #f5f5f5; transform: translateX(-4px); }
+        .question-card:last-child { margin-bottom: 0; }
+        .question-label {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.7;
+        }
+        .question-label .q-num {
+            background: var(--primary);
+            color: white;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .question-help {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-right: 36px;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            resize: vertical;
+            min-height: 100px;
+            background: white;
+        }
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-lighter);
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+        }
+        textarea::placeholder { color: #bbb; }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option-item:hover {
+            border-color: var(--primary-lighter);
+            background: #f0f7f0;
+        }
+        .option-item input {
+            margin-left: 12px;
+            width: 20px; height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .option-item span {
+            cursor: pointer;
+            font-size: 15px;
+            flex: 1;
+        }
+        .option-item.selected {
+            border-color: var(--primary);
+            background: #e8f5e9;
+        }
+
+        .submit-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -20%;
+            width: 300px; height: 300px;
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 50%;
+        }
+        .submit-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .submit-section p {
+            opacity: 0.9;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .submit-btn {
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 16px 48px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+            position: relative;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
+        }
+        .submit-btn:active { transform: translateY(0); }
+        .submit-btn i { margin-right: 8px; }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            animation: modalIn 0.4s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-icon {
+            width: 80px; height: 80px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: var(--primary);
+        }
+        .modal h2 { color: var(--primary); margin-bottom: 12px; }
+        .modal p { color: var(--text-light); margin-bottom: 24px; }
+        .modal-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255,255,255,0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .loading.active { display: flex; }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 4px solid #e8f5e9;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2rem; }
+            .header { padding: 40px 16px 60px; }
+            .container { margin-top: -30px; padding: 0 12px; }
+            .section-header { padding: 16px; }
+            .section-header .section-title { font-size: 1rem; }
+            .section-body-inner { padding: 16px; }
+            .question-card { padding: 16px; }
+            .submit-section { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p style="color: var(--primary); font-weight: 700;">جاري إرسال الإجابات...</p>
+</div>
+
+<div class="modal-overlay" id="successModal">
+    <div class="modal">
+        <div class="modal-icon"><i class="fas fa-check"></i></div>
+        <h2>تم الإرسال بنجاح!</h2>
+        <p>شكراً لك على إكمال النموذج. تم إرسال إجاباتك إلى فريق التطوير وسنتواصل معك قريباً.</p>
+        <button class="modal-btn" onclick="closeModal()">حسناً</button>
+    </div>
+</div>
+
+<header class="header">
+    <div class="header-content">
+        <div class="logo-badge">
+            <i class="fas fa-mosque"></i>
+            <span>ارتقاء | IRTIQA</span>
+        </div>
+        <h1>نموذج استكمال المتطلبات</h1>
+        <p class="subtitle">لتوضيح وتوثيق التفاصيل الكاملة لفكرة المشروع</p>
+        <p class="tagline">Every Day Closer — كل يوم أقرب</p>
+    </div>
+</header>
+
+<div class="progress-container">
+    <div class="progress-wrapper">
+        <div class="progress-info">
+            <span>تقدم الإكمال</span>
+            <span class="percent" id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="purpose-card">
+        <h2><i class="fas fa-bullseye"></i> غاية هذا النموذج</h2>
+        <p>بعد دراسة ملف فكرة مشروع "ارتقاء" بعناية، تبيّن أن عدداً من النقاط الجوهرية يحتاج إلى توضيحكم المباشر، نظراً لتأثيرها المباشر على دقة التصميم وتجربة المستخدم النهائية.</p>
+        <p style="margin-top: 8px;">يرجى تعبئة الإجابات في المساحة المخصصة أسفل كل سؤال. الأسئلة مصنفة حسب وحدات المنصة الوظيفية.</p>
+        <div class="highlight">كل إجابة دقيقة تقرّبنا خطوة من تصميم يعكس رؤيتكم الحقيقية للمشروع بكل تفاصيلها.</div>
+    </div>
+
+    <form id="irtiqaForm">
+
+        <!-- Section 1 -->
+        <div class="section" data-section="1">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">01</span>
+                    <div>
+                        <div class="section-title">النموذج التجاري والتشغيلي للمنصة</div>
+                        <div class="section-desc">أساسي لتصميم معمارية النظام بالكامل</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">1</span> هل المنصة مجانية بالكامل، أم تعتمد نموذج Freemium، أم اشتراك كامل؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q1" value="مجانية بالكامل" required><span>مجانية بالكامل</span></label>
+                            <label class="option-item"><input type="radio" name="q1" value="نموذج Freemium"><span>نموذج Freemium (مجاني + مدفوع)</span></label>
+                            <label class="option-item"><input type="radio" name="q1" value="اشتراك كامل"><span>اشتراك كامل لاستخدام المنصة</span></label>
+                            <label class="option-item"><input type="radio" name="q1" value="مزيج"><span>مزيج من Freemium واشتراك</span></label>
+                            <label class="option-item"><input type="radio" name="q1" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">2</span> في حال وجود اشتراك مدفوع، هل هو شهري أم سنوي أم لمرة واحدة؟ وهل يُحتسب لكل فرد أم للأسرة كاملة؟</div>
+                        <div class="question-help">يرجى التفصيل في نوع الاشتراك ونطاقه (فردي أم عائلي).</div>
+                        <textarea name="q2" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">3</span> هل هناك نية لإضافة متجر داخلي لشراء عملات أو جواهر إضافية؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q3" value="متجر كامل" required><span>نعم، متجر داخلي كامل</span></label>
+                            <label class="option-item"><input type="radio" name="q3" value="عملات فقط"><span>نعم، فقط عملات/جواهر</span></label>
+                            <label class="option-item"><input type="radio" name="q3" value="جوائز فقط"><span>نعم، فقط جوائز رمزية</span></label>
+                            <label class="option-item"><input type="radio" name="q3" value="لا"><span>لا، لا يوجد نية حالياً</span></label>
+                            <label class="option-item"><input type="radio" name="q3" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">4</span> الجوائز التي يرصدها ولي الأمر — هل تُدار خارج التطبيق، أم تُسجّل كسجل داخل النظام فقط؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q4" value="خارج التطبيق" required><span>تُدار وتُسلّم خارج التطبيق فعلياً</span></label>
+                            <label class="option-item"><input type="radio" name="q4" value="سجل داخلي"><span>تُسجّل كسجل داخل النظام فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q4" value="مزيج"><span>مزيج من الاثنين</span></label>
+                            <label class="option-item"><input type="radio" name="q4" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">5</span> هل هناك نية مستقبلية لعرض إعلانات أو شراكات ترويجية؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q5" value="إعلانات" required><span>نعم، إعلانات داخل التطبيق</span></label>
+                            <label class="option-item"><input type="radio" name="q5" value="شراكات"><span>نعم، شراكات ترويجية فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q5" value="لا"><span>لا، لا يوجد نية حالياً</span></label>
+                            <label class="option-item"><input type="radio" name="q5" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section collapsed" data-section="2">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">02</span>
+                    <div>
+                        <div class="section-title">متابعة العبادات والنوافذ الزمنية</div>
+                        <div class="section-desc">طبقة منطق معقدة فلكياً وجغرافياً</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">6</span> كيف تتحدد "النافذة الزمنية" لكل عبادة؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q6" value="فلكي" required><span>تُحسب فلكياً من موقع المستخدم الجغرافي</span></label>
+                            <label class="option-item"><input type="radio" name="q6" value="ثابت"><span>تُحدّد بجدول زمني ثابت لا يتغير</span></label>
+                            <label class="option-item"><input type="radio" name="q6" value="مزيج"><span>مزيج من الاثنين</span></label>
+                            <label class="option-item"><input type="radio" name="q6" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">7</span> ماذا يحدث إذا سجّل المستخدم عبادة بعد انتهاء نافذتها الزمنية؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q7" value="نقاط أقل" required><span>تُقبل بنقاط أقل</span></label>
+                            <label class="option-item"><input type="radio" name="q7" value="تُرفض"><span>تُرفض تماماً</span></label>
+                            <label class="option-item"><input type="radio" name="q7" value="فائتة"><span>تُسجّل كـ"فائتة" دون نقاط</span></label>
+                            <label class="option-item"><input type="radio" name="q7" value="نقاط كاملة"><span>تُقبل بنقاط كاملة مع إشعار تأخير</span></label>
+                            <label class="option-item"><input type="radio" name="q7" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">8</span> كيف يتعامل النظام مع تغيّر موقع المستخدم (سفر) أو تغيّر المنطقة الزمنية؟</div>
+                        <div class="question-help">مثال: المستخدم يسافر من السعودية إلى دبي.</div>
+                        <textarea name="q8" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">9</span> هل تدعم المنصة طرق حساب فلكية متعددة لمواقيت الصلاة حسب دولة المستخدم؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q9" value="متعدد" required><span>نعم، دعم طرق متعددة حسب دولة المستخدم</span></label>
+                            <label class="option-item"><input type="radio" name="q9" value="موحد"><span>لا، طريقة واحدة موحدة لجميع المستخدمين</span></label>
+                            <label class="option-item"><input type="radio" name="q9" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">10</span> بخصوص صيام النوافل، هل يحتاج المستخدم لتسجيل نيّة الصيام مسبقاً (قبل الفجر)؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q10" value="النية مسبقاً" required><span>تسجيل النية مسبقاً (قبل الفجر)</span></label>
+                            <label class="option-item"><input type="radio" name="q10" value="بعد الإفطار"><span>تسجيل الإنجاز بعد الإفطار فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q10" value="الخياران"><span>الخياران متاحان</span></label>
+                            <label class="option-item"><input type="radio" name="q10" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">11</span> ما هي "المواسم التعبدية" التي يتعرّف عليها النظام تلقائياً؟ وهل يُعتمد التقويم الهجري لأم القرى؟</div>
+                        <div class="question-help">يرجى ذكر جميع المواسم المطلوبة ونوع التقويم المفضل.</div>
+                        <textarea name="q11" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section collapsed" data-section="3">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">03</span>
+                    <div>
+                        <div class="section-title">نظام الارتقاء ومؤشره</div>
+                        <div class="section-desc">القلب التحفيزي للمنصة</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">12</span> ما هي المعادلة التي يُحسب بها "مؤشر الارتقاء" من الأبعاد الثلاثة؟</div>
+                        <div class="question-help">يمكنك وصف المعادلة أو تركها لفريق التطوير لاقتراحها.</div>
+                        <textarea name="q12" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">13</span> هل تتفاوت أهمية (وزن) كل عبادة في حساب المؤشر؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q13" value="أوزان مختلفة" required><span>نعم، أوزان مختلفة لكل عبادة</span></label>
+                            <label class="option-item"><input type="radio" name="q13" value="متساوية"><span>لا، جميع العبادات متساوية</span></label>
+                            <label class="option-item"><input type="radio" name="q13" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">14</span> هل المؤشر تراكمي طوال عمر الحساب، أم يُعاد حسابه على فترة متحركة؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q14" value="تراكمي" required><span>تراكمي طوال عمر الحساب</span></label>
+                            <label class="option-item"><input type="radio" name="q14" value="30 يوم"><span>فترة متحركة (آخر 30 يوماً)</span></label>
+                            <label class="option-item"><input type="radio" name="q14" value="7 أيام"><span>فترة متحركة (آخر 7 أيام)</span></label>
+                            <label class="option-item"><input type="radio" name="q14" value="مزيج"><span>مزيج من التراكمي والمتحرك</span></label>
+                            <label class="option-item"><input type="radio" name="q14" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">15</span> هل هناك "مستويات" واضحة للمؤشر (مثل: مبتدئ، مجتهد، متقن...)؟</div>
+                        <div class="question-help">يرجى ذكر أسماء المستويات إن وجدت.</div>
+                        <textarea name="q15" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section collapsed" data-section="4">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">04</span>
+                    <div>
+                        <div class="section-title">مسارات الارتقاء</div>
+                        <div class="section-desc">تعريف دقيق لعدد المراحل ومحتواها</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">16</span> هل المسارات الخمسة مستقلة تماماً، أم أن إكمال مسار يفتح مساراً آخر؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q16" value="مستقلة" required><span>مستقلة تماماً</span></label>
+                            <label class="option-item"><input type="radio" name="q16" value="مرتبطة"><span>مرتبطة (إكمال مسار يفتح مساراً آخر)</span></label>
+                            <label class="option-item"><input type="radio" name="q16" value="مزيج"><span>مزيج من الاستقلال والارتباط</span></label>
+                            <label class="option-item"><input type="radio" name="q16" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">17</span> كم عدد المراحل المخطط لها داخل كل مسار؟ وما معيار الانتقال؟</div>
+                        <div class="question-help">مثال: مسار الصلاة = 5 مراحل، الانتقال كل 100 نقطة.</div>
+                        <textarea name="q17" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">18</span> هل يُرفق بكل مرحلة محتوى تعليمي أو تحفيزي؟ ومن الجهة المسؤولة عنه؟</div>
+                        <div class="question-help">يرجى تحديد الجهة المسؤولة عن المحتوى.</div>
+                        <textarea name="q18" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section collapsed" data-section="5">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">05</span>
+                    <div>
+                        <div class="section-title">نظام التحديات</div>
+                        <div class="section-desc">التحديات الموسمية والدوريات الأسرية</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">19</span> من الجهة المخوّلة لإنشاء التحديات الفردية والموسمية؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q19" value="إدارة المنصة" required><span>إدارة المنصة فقط (محتوى ثابت)</span></label>
+                            <label class="option-item"><input type="radio" name="q19" value="ولي الأمر"><span>ولي الأمر يمكنه إنشاء تحدٍّ مخصص</span></label>
+                            <label class="option-item"><input type="radio" name="q19" value="مزيج"><span>مزيج من الاثنين</span></label>
+                            <label class="option-item"><input type="radio" name="q19" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">20</span> ما آلية "الدوريات الأسرية" بالتفصيل؟ كيف تنضم الأسرة إلى دوري؟</div>
+                        <div class="question-help">يرجى وصف آلية التنافس بين الأسر.</div>
+                        <textarea name="q20" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">21</span> هل هناك حد أدنى أو أقصى لعدد المشاركين في تحدٍّ واحد؟</div>
+                        <div class="question-help">مثال: 3-10 أسر في الدوري الواحد.</div>
+                        <textarea name="q21" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">22</span> ما طبيعة الجوائز المرتبطة بالفوز في الدوريات الأسرية؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q22" value="رمزية" required><span>رمزية بالكامل داخل التطبيق (أوسمة، نقاط)</span></label>
+                            <label class="option-item"><input type="radio" name="q22" value="حقيقية"><span>جوائز حقيقية يديرها ولي الأمر خارج النظام</span></label>
+                            <label class="option-item"><input type="radio" name="q22" value="مزيج"><span>مزيج من الاثنين</span></label>
+                            <label class="option-item"><input type="radio" name="q22" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section collapsed" data-section="6">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">06</span>
+                    <div>
+                        <div class="section-title">نظام الأسرة ووضع الأطفال</div>
+                        <div class="section-desc">الأكثر تعقيداً تقنياً في المنصة</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">23</span> هل حساب الطفل مستقل بمعرّف دخول خاص، أم "ملف فرعي" ضمن حساب ولي الأمر؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q23" value="مستقل" required><span>حساب مستقل بمعرّف دخول خاص</span></label>
+                            <label class="option-item"><input type="radio" name="q23" value="ملف فرعي"><span>ملف فرعي (Sub-profile) بدون تسجيل دخول مستقل</span></label>
+                            <label class="option-item"><input type="radio" name="q23" value="الخياران"><span>الخياران متاحان</span></label>
+                            <label class="option-item"><input type="radio" name="q23" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">24</span> ما الحد الأدنى والحد الأقصى لعمر "الطفل" المؤهل لاستخدام الوضع المخصص؟</div>
+                        <div class="question-help">مثال: من 5 إلى 15 سنة.</div>
+                        <textarea name="q24" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">25</span> ما الحد الأقصى لعدد الأبناء الذين يمكن إضافتهم ضمن الأسرة الواحدة؟</div>
+                        <div class="question-help">مثال: 5 أبناء كحد أقصى.</div>
+                        <textarea name="q25" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">26</span> هل يمكن وجود أكثر من ولي أمر واحد لنفس الأسرة؟ كيف تُدار الصلاحيات المشتركة؟</div>
+                        <div class="question-help">يرجى وصف آلية إدارة الصلاحيات المشتركة.</div>
+                        <textarea name="q26" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">27</span> هل يمكن للمستخدم البالغ أن يكون "ولي أمر" في أسرته الخاصة، وفي الوقت نفسه "عضواً تابعاً" ضمن أسرة والديه؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q27" value="نعم" required><span>نعم</span></label>
+                            <label class="option-item"><input type="radio" name="q27" value="لا"><span>لا</span></label>
+                            <label class="option-item"><input type="radio" name="q27" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">28</span> ما مدى رؤية ولي الأمر لتفاصيل نشاط الطفل؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q28" value="بث مباشر" required><span>بث مباشر (كل عبادة لحظة تسجيلها)</span></label>
+                            <label class="option-item"><input type="radio" name="q28" value="تقرير دوري"><span>تقرير ملخّص دوري فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q28" value="مزيج"><span>مزيج من الاثنين (حسب نوع العبادة)</span></label>
+                            <label class="option-item"><input type="radio" name="q28" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">29</span> هل تتطلب طبيعة المستخدمين الأطفال إجراءات خاصة لحماية بياناتهم؟</div>
+                        <div class="question-help">يرجى ذكر أي لوائح أو متطلبات قانونية معينة.</div>
+                        <textarea name="q29" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section collapsed" data-section="7">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">07</span>
+                    <div>
+                        <div class="section-title">مركز القرآن الكريم والأذكار</div>
+                        <div class="section-desc">محتوى ديني وتتبع للعبادات</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">30</span> هل تحتاج المنصة لرواية واحدة من القرآن (حفص عن عاصم) فقط، أم لدعم تعدد الروايات؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q30" value="واحدة" required><span>رواية واحدة (حفص عن عاصم)</span></label>
+                            <label class="option-item"><input type="radio" name="q30" value="متعدد"><span>دعم تعدد الروايات منذ الإصدار الأول</span></label>
+                            <label class="option-item"><input type="radio" name="q30" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">31</span> هل "متابعة الختمة" تتطلب تسجيل يدوي، أم تتبعاً تلقائياً؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q31" value="يدوي" required><span>تسجيل يدوي من المستخدم</span></label>
+                            <label class="option-item"><input type="radio" name="q31" value="صوت"><span>تتبع تلقائي عبر تشغيل الصوت</span></label>
+                            <label class="option-item"><input type="radio" name="q31" value="شاشة"><span>تتبع تلقائي عبر قراءة الشاشة</span></label>
+                            <label class="option-item"><input type="radio" name="q31" value="مزيج"><span>مزيج من اليدوي والتلقائي</span></label>
+                            <label class="option-item"><input type="radio" name="q31" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">32</span> هل المطلوب في الإصدار الأول نص القرآن وصوته فقط، أم أيضاً تفسير مبسّط؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q32" value="نص وصوت" required><span>نص وصوت فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q32" value="مع تفسير"><span>نص وصوت وتفسير مبسّط</span></label>
+                            <label class="option-item"><input type="radio" name="q32" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">33</span> هل أذكار "ما بعد الصلاة" وأذكار "النوم" تتطلب تتبعاً فعلياً (تُحسب في النقاط)، أم محتوى استعراضي فقط؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q33" value="تتبع" required><span>تتبع فعلي (يُحسب في النقاط)</span></label>
+                            <label class="option-item"><input type="radio" name="q33" value="استعراضي"><span>محتوى استعراضي للقراءة فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q33" value="مزيج"><span>مزيج من الاثنين</span></label>
+                            <label class="option-item"><input type="radio" name="q33" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="section collapsed" data-section="8">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">08</span>
+                    <div>
+                        <div class="section-title">نظام الإشعارات</div>
+                        <div class="section-desc">قنوات الإشعار والسيناريوهات</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">34</span> ما قنوات الإشعار المطلوبة في الإصدار الأول؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q34" value="داخل التطبيق" required><span>تنبيهات داخل التطبيق فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q34" value="Push"><span>إشعارات Push على الجهاز</span></label>
+                            <label class="option-item"><input type="radio" name="q34" value="بريد"><span>بريد إلكتروني</span></label>
+                            <label class="option-item"><input type="radio" name="q34" value="جميعها"><span>جميعها معاً</span></label>
+                            <label class="option-item"><input type="radio" name="q34" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">35</span> هل يحتاج المستخدم إلى تفعيل "أذان" صوتي كامل عند دخول وقت الصلاة؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q35" value="أذان كامل" required><span>نعم، أذان كامل</span></label>
+                            <label class="option-item"><input type="radio" name="q35" value="تنبيه قصير"><span>تنبيه نصي/صوت قصير فقط</span></label>
+                            <label class="option-item"><input type="radio" name="q35" value="الخياران"><span>الخياران متاحان للمستخدم</span></label>
+                            <label class="option-item"><input type="radio" name="q35" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">36</span> ما السيناريوهات الدقيقة التي تستوجب إشعاراً؟</div>
+                        <div class="question-help">يرجى ذكر جميع السيناريوهات التي تريد إشعارات لها.</div>
+                        <textarea name="q36" placeholder="مثال: قبل الصلاة بـ 15 دقيقة، عند فوات اليوم دون تسجيل..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">37</span> هل تحتاج المنصة لإشعارات تفاعلية تتضمن أزرار إجراء مباشر؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q37" value="نعم" required><span>نعم</span></label>
+                            <label class="option-item"><input type="radio" name="q37" value="لا"><span>لا</span></label>
+                            <label class="option-item"><input type="radio" name="q37" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9 -->
+        <div class="section collapsed" data-section="9">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">09</span>
+                    <div>
+                        <div class="section-title">التقارير</div>
+                        <div class="section-desc">التقارير الدورية والتصدير</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">38</span> هل التقارير الدورية تُرسل تلقائياً، أم تُعرض فقط عند الطلب؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q38" value="تلقائي" required><span>تُرسل تلقائياً (إشعار + بريد)</span></label>
+                            <label class="option-item"><input type="radio" name="q38" value="عند الطلب"><span>تُعرض فقط عند الطلب داخل التطبيق</span></label>
+                            <label class="option-item"><input type="radio" name="q38" value="مزيج"><span>مزيج من الاثنين</span></label>
+                            <label class="option-item"><input type="radio" name="q38" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">39</span> هل يحتاج ولي الأمر إلى تقرير مقارن بين أبنائه المختلفين؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q39" value="نعم" required><span>نعم</span></label>
+                            <label class="option-item"><input type="radio" name="q39" value="لا"><span>لا</span></label>
+                            <label class="option-item"><input type="radio" name="q39" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">40</span> هل هناك حاجة لتصدير التقارير بصيغة PDF أو مشاركتها خارج التطبيق؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q40" value="PDF ومشاركة" required><span>نعم، تصدير PDF ومشاركة</span></label>
+                            <label class="option-item"><input type="radio" name="q40" value="مشاركة فقط"><span>نعم، مشاركة فقط بدون تصدير</span></label>
+                            <label class="option-item"><input type="radio" name="q40" value="لا"><span>لا، لا توجد حاجة حالياً</span></label>
+                            <label class="option-item"><input type="radio" name="q40" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10 -->
+        <div class="section collapsed" data-section="10">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">10</span>
+                    <div>
+                        <div class="section-title">الأدوار والصلاحيات ولوحة الإدارة</div>
+                        <div class="section-desc">صلاحيات المدير ولوحة التحكم</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">41</span> ما الصلاحيات التفصيلية المطلوبة لدور "مدير المنصة" ضمن MVP؟</div>
+                        <div class="question-help">يرجى تحديد ما إذا كان مدير المنصة ضمن MVP أم مؤجل.</div>
+                        <textarea name="q41" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">42</span> هل يحتاج "مدير المنصة" لوحة تحكم منفصلة (Admin Dashboard) ضمن MVP؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q42" value="ضمن MVP" required><span>نعم، ضمن MVP</span></label>
+                            <label class="option-item"><input type="radio" name="q42" value="مؤجل"><span>لا، مؤجل للمرحلة الثانية</span></label>
+                            <label class="option-item"><input type="radio" name="q42" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11 -->
+        <div class="section collapsed" data-section="11">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div style="display: flex; align-items: center; flex: 1;">
+                    <span class="section-num">11</span>
+                    <div>
+                        <div class="section-title">المتطلبات التقنية والتشغيلية</div>
+                        <div class="section-desc">البنية التحتية والمواعيد النهائية</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="section-body">
+                <div class="section-body-inner">
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">43</span> هل يجب أن تعمل وظائف المنصة الأساسية في وضع Offline مع مزامنة لاحقة؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q43" value="Offline" required><span>نعم، Offline أولاً ثم مزامنة</span></label>
+                            <label class="option-item"><input type="radio" name="q43" value="اتصال دائم"><span>لا، يتطلب اتصال دائم</span></label>
+                            <label class="option-item"><input type="radio" name="q43" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">44</span> هل يجب إطلاق المنصة باللغتين العربية والإنجليزية مكتملتين معاً؟</div>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="q44" value="معاً" required><span>العربية والإنجليزية معاً</span></label>
+                            <label class="option-item"><input type="radio" name="q44" value="عربية أولاً"><span>العربية أولاً ثم الإنجليزية لاحقاً</span></label>
+                            <label class="option-item"><input type="radio" name="q44" value="غير محدد"><span>غير محدد بعد</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">45</span> هل هناك مزوّد استضافة أو بنية تحتية محددة مسبقاً (AWS أو حلول محلية سعودية) يجب الالتزام بها؟</div>
+                        <div class="question-help">يرجى ذكر أي متطلبات استضافة أو لوائح تنظيمية.</div>
+                        <textarea name="q45" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">46</span> هل هناك سقف زمني محدد للإطلاق (Deadline) يجب أخذه بالحسبان؟</div>
+                        <div class="question-help">يرجى تحديد أي تواريخ نهائية مهمة.</div>
+                        <textarea name="q46" placeholder="مثال: الإطلاق قبل رمضان القادم..."></textarea>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label"><span class="q-num">47</span> هل المنصة مرتبطة بكيان مؤسسي أو مرجعية شرعية معيّنة يجب أن يُراجع كل محتوى ديني من خلالها؟</div>
+                        <div class="question-help">يرجى ذكر اسم الكيان أو المرجعية إن وجدت.</div>
+                        <textarea name="q47" placeholder="اكتب إجابتك هنا..."></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Section -->
+        <div class="submit-section">
+            <h2><i class="fas fa-paper-plane"></i> إرسال الإجابات</h2>
+            <p>بعد استلام إجاباتكم، سنقوم بإعداد الوثيقة التفصيلية لنطاق المشروع والمخطط الوظيفي والجدول الزمني التقديري.</p>
+            <button type="submit" class="submit-btn" onclick="submitForm(event)">
+                <i class="fas fa-check-circle"></i> إرسال النموذج
+            </button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <p>نموذج استكمال المتطلبات — مشروع <strong>ارتقاء | IRTIQA</strong></p>
+        <p style="margin-top: 4px;">Every Day Closer — كل يوم أقرب</p>
+    </div>
+</div>
+
+<script>
+// Toggle sections
+function toggleSection(header) {
+    const section = header.parentElement;
+    section.classList.toggle('collapsed');
+}
+
+// Progress tracking
+function updateProgress() {
+    const allInputs = document.querySelectorAll('input[type="radio"], textarea');
+    const answered = Array.from(allInputs).filter(input => {
+        if (input.type === 'radio') {
+            const name = input.name;
+            return document.querySelector('input[name="' + name + '"]:checked') !== null;
+        }
+        return input.value.trim().length > 0;
+    });
+
+    // Count unique questions answered
+    const answeredQuestions = new Set();
+    answered.forEach(input => {
+        if (input.type === 'radio') {
+            answeredQuestions.add(input.name);
+        } else {
+            answeredQuestions.add(input.name);
+        }
+    });
+
+    const totalQuestions = 47;
+    const progress = Math.round((answeredQuestions.size / totalQuestions) * 100);
+
+    document.getElementById('progressFill').style.width = progress + '%';
+    document.getElementById('progressPercent').textContent = progress + '%';
+}
+
+// Listen for changes
+document.querySelectorAll('input, textarea').forEach(input => {
+    input.addEventListener('change', updateProgress);
+    input.addEventListener('input', updateProgress);
+});
+
+// Option selection styling
+document.querySelectorAll('.option-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'INPUT') {
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                radio.dispatchEvent(new Event('change'));
+            }
+        }
+        // Remove selected from siblings
+        const group = this.closest('.options-group');
+        if (group) {
+            group.querySelectorAll('.option-item').forEach(opt => opt.classList.remove('selected'));
+        }
+        this.classList.add('selected');
+    });
+});
+
+// Form submission
+function submitForm(e) {
+    e.preventDefault();
+
+    const form = document.getElementById('irtiqaForm');
+    const formData = new FormData(form);
+
+    // Show loading
+    document.getElementById('loading').classList.add('active');
+
+    // Send to Formspree
+    fetch('https://formspree.io/f/dev@vertocore.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        document.getElementById('loading').classList.remove('active');
+        if (response.ok) {
+            document.getElementById('successModal').classList.add('active');
+            form.reset();
+            updateProgress();
+        } else {
+            alert('حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.');
+        }
+    })
+    .catch(error => {
+        document.getElementById('loading').classList.remove('active');
+        alert('حدث خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.');
+    });
+}
+
+function closeModal() {
+    document.getElementById('successModal').classList.remove('active');
+}
+
+// Close modal on overlay click
+document.getElementById('successModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Initialize
+updateProgress();
+</script>
+
+</body>
+</html>
